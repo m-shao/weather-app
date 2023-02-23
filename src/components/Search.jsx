@@ -1,37 +1,37 @@
 import React, {useState, useEffect, useRef} from 'react'
 
+import { useWeather, useWeatherUpdate } from '../context/WeatherContext';
+
 import searchIcon from "../images/search-icon.svg"
 
-function Search({ onJsonData }) {
-  
-  const [location, setLocation] = useState('Whitby Ontario');
+function Search() {
+
   const locationRef = useRef("")
-  const [weather, setWeather] = useState(null);
+  const [location, setLocation] = useState('Whitby Ontario');
+  const updateWeather = useWeatherUpdate()
 
   useEffect(() => {
-    console.log(weather)
-  }, [weather])
-
-  const fetchWeather = async () => {
-    try {
-      const response = await fetch(`http://api.weatherapi.com/v1/current.json?key=09cb9c8e29964a0fb2d235905232102&q=${location}`);
-      const data = await response.json();
-      setWeather(data);
-    } catch (err) {
-      setWeather(err)
+    const fetchWeather = async () => {
+      try {
+        const response = await fetch(`http://api.weatherapi.com/v1/current.json?key=09cb9c8e29964a0fb2d235905232102&q=${location}`)
+        const data = await response.json()
+        updateWeather(data)
+      } catch (err) {
+        updateWeather(null)
+      }
     }
-  }
 
-  const onSubmit = (event) => {
+    fetchWeather()
+  }, [location])
+  
+  const handleSubmit = (event) => {
     event.preventDefault();
     setLocation(locationRef.current.value)
-    fetchWeather()
   }
-
 
   return (
     <>
-      <form onSubmit={onSubmit} className='flex flex-row gap-3'>
+      <form onSubmit={handleSubmit} className='flex flex-row gap-3'>
         <button className='h-10 p-0' type='submit'>
           <img className='h-8' src={searchIcon} alt="Search" />
         </button>

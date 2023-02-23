@@ -1,6 +1,6 @@
 import React from 'react'
 
-import clearDay from '../images/clear-sky-m.svg'
+import clearDay from '../images/sunny.svg'
 
 function WeekWeather() {
   return (
