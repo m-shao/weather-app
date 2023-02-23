@@ -15,8 +15,8 @@ function Search() {
         const response = await fetch(`http://api.weatherapi.com/v1/${apiMode}.json?key=09cb9c8e29964a0fb2d235905232102&q=${location}&days=7&forecastday=1&hour=24`)
         const data = await response.json()
         updateWeather(data)
-      } catch (err) {
-        updateWeather(null)
+      } catch (error) {
+        updateWeather(error)
       }
     }
     fetchWeather("forecast")
