@@ -1,6 +1,6 @@
 import React, {useState, useEffect, useRef} from 'react'
 
-import { useWeather, useWeatherUpdate } from '../context/WeatherContext';
+import { useWeatherUpdate } from '../context/WeatherContext';
 
 import searchIcon from "../images/search-icon.svg"
 
@@ -9,19 +9,18 @@ function Search() {
   const locationRef = useRef("")
   const [location, setLocation] = useState('Whitby Ontario');
   const updateWeather = useWeatherUpdate()
-
   useEffect(() => {
-    const fetchWeather = async () => {
+    const fetchWeather = async (apiMode) => {
       try {
-        const response = await fetch(`http://api.weatherapi.com/v1/current.json?key=09cb9c8e29964a0fb2d235905232102&q=${location}`)
+        const response = await fetch(`http://api.weatherapi.com/v1/${apiMode}.json?key=09cb9c8e29964a0fb2d235905232102&q=${location}&days=7&forecastday=1&hour=24`)
         const data = await response.json()
         updateWeather(data)
       } catch (err) {
         updateWeather(null)
       }
     }
-
-    fetchWeather()
+    fetchWeather("forecast")
+    
   }, [location])
   
   const handleSubmit = (event) => {
