@@ -11,10 +11,11 @@ function Weather() {
     const current = weather?.current
     const condition = current?.condition
 
-    const weatherIcon = weatherImages[weatherConditionCodes[condition?.code]]
+    const weatherCode = weatherConditionCodes[condition?.code]
+    const weatherIcon = weatherImages[weatherCode]
 
     return (
-        <div className='w-4/5 h-3/4 bg-zinc-900 rounded-3xl p-12 flex flex-col justify-between box-border'>
+        <div className='w-4/5 h-3/4 bg-gray-100 dark:bg-zinc-900 rounded-3xl p-12 flex flex-col justify-between box-border'>
             <div className="w-full flex justify-between">
                 <div>
                     <h1 className='text-4xl font-bold'>{location?.name}</h1>
@@ -27,7 +28,7 @@ function Weather() {
                     <h1 className='text-7xl'>{current?.temp_c}°C</h1>
                     <h2 className='text-3xl'>{condition?.text}</h2>
                 </div>
-                <img className='h-full' src={weatherIcon} alt="current weather" />
+                <img className={'h-full dark:brightness-100 brightness-' + (weatherCode == "snow" ? "50": "100")} src={weatherIcon} alt="current weather" />
                 <div className='ml-20'>
                     <ul>
                         <li className='text-2xl mb-6'>Wind Speed: {current?.wind_kph} km/h</li>

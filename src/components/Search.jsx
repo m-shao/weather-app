@@ -32,10 +32,10 @@ function Search() {
     <>
       <form onSubmit={handleSubmit} className='flex flex-row gap-3'>
         <button className='h-10 p-0' type='submit'>
-          <img className='h-8' src={searchIcon} alt="Search" />
+          <img className={'h-8 brightness-0 dark:brightness-100'} src={searchIcon} alt="Search" />
         </button>
         <input
-          className='w-52 h-10 p-4 rounded-3xl bg-white flex items-center text-sm text-gray-500'
+          className='w-52 h-10 p-4 rounded-3xl bg-white flex items-center text-sm text-gray-500 border border-gray-700 dark:border-none'
           type="text"
           placeholder="Search Location" 
           ref={locationRef}/> 
