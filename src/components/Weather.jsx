@@ -7,9 +7,6 @@ import { weatherConditionCodes, weatherImages } from '../data/weatherConditions'
 
 function Weather() {
     const weather = useWeather()
-    if(weather.error){
-        //do something   
-    }
     const location = weather?.location
     const current = weather?.current
     const condition = current?.condition
@@ -34,8 +31,8 @@ function Weather() {
                 <img className={'h-full dark:brightness-100 ' + (weatherCode === "snow" ? "brightness-50": "brightness-100")} src={weatherIcon} alt="current weather" />
                 <div className='ml-20'>
                     <ul>
-                        <li className='text-2xl mb-6'>Wind Speed: {current?.wind_kph} km/h</li>
-                        <li className='text-2xl mb-6'>Precipitation: 1.4mm</li>
+                        <li className='text-2xl mb-6'>Wind Speed: {current?.wind_kph}km/h</li>
+                        <li className='text-2xl mb-6'>Precipitation: {current?.precip_mm}mm</li>
                         <li className='text-2xl mb-6'>Humidity: {current?.humidity}%</li>
                         <li className='text-2xl mb-6'>Pressure: {current?.pressure_in}mb</li>
                         <li className='text-2xl mb-6'>Feels Like: {current?.feelslike_c}°C</li>

@@ -30,7 +30,7 @@ function WeekWeather() {
                             <li className='flex flex-col items-center' key={weekdays[index].id}>
                                 <h3 className='text-lg'>{weekdays[index].value}</h3>
                                 <img className={'h-4/5 dark:brightness-100 ' + 
-                                    (weatherConditionCodes[forecastCode] == "snow"? "brightness-50":"brightness-100")} 
+                                    (weatherConditionCodes[forecastCode] === "snow"? "brightness-50":"brightness-100")} 
                                     src={
                                     weatherImages[weatherConditionCodes[forecastCode]]
                                     } alt="Weather" />
