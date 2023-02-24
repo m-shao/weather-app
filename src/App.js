@@ -6,6 +6,8 @@ import Weather from "./components/Weather"
 import sun from './images/sun.svg'
 import moon from './images/moon.svg'
 
+
+//test
 function App() {
   const [dark, setDark] = useState(localStorage.getItem("dark"))
   return (
