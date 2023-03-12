@@ -1,4 +1,5 @@
 import React, {useState, useEffect, useRef} from 'react'
+import { apiKey } from '../../secrets';
 
 import { useWeatherUpdate } from '../context/WeatherContext';
 
@@ -12,7 +13,7 @@ function Search() {
   useEffect(() => {
     const fetchWeather = async (apiMode) => {
       try {
-        const response = await fetch(`http://api.weatherapi.com/v1/${apiMode}.json?key=09cb9c8e29964a0fb2d235905232102&q=${location}&days=7&forecastday=1&hour=24`)
+        const response = await fetch(`http://api.weatherapi.com/v1/${apiMode}.json?key=${apiKey}&q=${location}&days=7&forecastday=1&hour=24`)
         const data = await response.json()
         updateWeather(data)
       } catch (error) {
